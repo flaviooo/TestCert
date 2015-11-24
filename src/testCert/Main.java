@@ -150,7 +150,6 @@ public class Main {
 						
 						ExstractorP7M extrac = new ExstractorP7M();
 						System.out.println(extrac.verifyEstrai(pathSingoloMesssaggio+File.separator));
-						String fileNameP7MExport = msg.getFileName().substring(0, msg.getFileName().length() - 4).trim();
 						
 
 					}else{
