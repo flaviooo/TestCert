@@ -36,25 +36,18 @@ public class ExstractorP7M {
 		}
 	}
 
-	public  boolean verifyEstrai(String pathFilesSigned) {
+	public  boolean verifyEstrai(File pathFilesSignedd) {
 
 		boolean esito = false;
-		File[] filesP7M = new File(pathFilesSigned).listFiles((new FileExtensionFilter("p7m")));
-		int nFiles = filesP7M.length;
-		System.out.println(String.format("Trovati %s file", nFiles));
-		if (nFiles != 0) {
-			for (int i = 0; i < filesP7M.length; i++) {
 
-				String fileNameP7MExport = pathFilesSigned + filesP7M[i].getName().substring(0, filesP7M[i].getName().length() - 4).trim();
-
-				byte[] buffer = new byte[(int) filesP7M[i].length()];
+				byte[] buffer = new byte[(int) pathFilesSignedd.length()];
 				DataInputStream in;
 				try {
-					in = new DataInputStream(new FileInputStream(filesP7M[i]));
+					in = new DataInputStream(new FileInputStream(pathFilesSignedd));
 
 					in.readFully(buffer);
 					in.close();
-
+					
 					Security.addProvider(new BouncyCastleProvider());
 					CMSSignedData signature = new CMSSignedData(buffer);
 					SignerInformation signer = (SignerInformation)signature.getSignerInfos().getSigners().iterator().next();
@@ -70,16 +63,15 @@ public class ExstractorP7M {
 					System.out.println(	signer.verify(certificate.getPublicKey(), "BC"));
 					
 					System.out.println(data);
-					System.out.println(fileNameP7MExport);
-					FileOutputStream envfos = new FileOutputStream(fileNameP7MExport);
+					System.out.println(pathFilesSignedd.getName().substring(0, pathFilesSignedd.getName().length() - 4).trim());
+					FileOutputStream envfos = new FileOutputStream(pathFilesSignedd.getName().substring(0, pathFilesSignedd.getName().length() - 4).trim());
 					envfos.write(data);
 					envfos.close();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
-		}
+			
 		return esito;
 	}
 }

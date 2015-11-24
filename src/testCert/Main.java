@@ -22,6 +22,7 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
 import testCert.connPEC.ConnMailCCSEManager;
+import testCert.util.ConvertXML2HTML;
 import testCert.util.ExstractorP7M;
 import testCert.util.FileUtils;
 
@@ -78,6 +79,7 @@ public class Main {
 	}
 
 	private static void elaboraSingoloMessaggio(Part msg, String idMessage) {
+		
 		String pathSingoloMesssaggio = pathBase+File.separator+idMessage;
 		try {
 
@@ -142,14 +144,18 @@ public class Main {
 					
 
 					if(msg.getFileName().toLowerCase().endsWith(".p7m")){
-						
+						ExstractorP7M extrac = new ExstractorP7M();
+						ConvertXML2HTML convetHtml = new ConvertXML2HTML();
 				
-						File fileP7m = new File(pathSingoloMesssaggio,idMessage+"_"+msg.getFileName());		
+						File fileP7m = new File(pathSingoloMesssaggio,msg.getFileName());		
 						FileUtils.scriviFile(fileP7m, msg.getInputStream());
 						//String bite = java.util.Base64.getMimeEncoder().encodeToString(IOUtils.toByteArray(iss));
 						
-						ExstractorP7M extrac = new ExstractorP7M();
-						System.out.println(extrac.verifyEstrai(pathSingoloMesssaggio+File.separator));
+						
+						System.out.println(extrac.verifyEstrai(fileP7m));
+						String fileNameHTMLMExport = (fileP7m.getName().substring(0, fileP7m.getName().length() - 4).trim())+".html";
+						
+						convetHtml.convertXML2FO(fileP7m, new File(fileNameHTMLMExport));
 						
 
 					}else{
