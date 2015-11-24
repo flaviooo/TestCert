@@ -59,7 +59,6 @@ public class ExstractorP7M {
 					CMSSignedData signature = new CMSSignedData(buffer);
 					SignerInformation signer = (SignerInformation)signature.getSignerInfos().getSigners().iterator().next();
 					CertStore cs = signature.getCertificatesAndCRLs("Collection", "BC");
-					Store certificati = signature.getCertificates();
 					
 					Iterator iter = cs.getCertificates(signer.getSID()).iterator();
 					X509Certificate certificate = (X509Certificate) iter.next();
