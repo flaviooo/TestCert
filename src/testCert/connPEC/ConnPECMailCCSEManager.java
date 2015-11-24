@@ -25,7 +25,7 @@ public class ConnPECMailCCSEManager extends ConnMailCCSEManager {
 			props.put("mail.imaps.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			props.put("mail.imaps.starttls.enable", "true");
 
-			Session mailSession = Session.getDefaultInstance(props, new MailAuthenticator("M", "-1"));
+			Session mailSession = Session.getDefaultInstance(props, new MailAuthenticator("M06B31", "INFO2013-1"));
 
 			store =  mailSession.getStore();
 			
