@@ -78,14 +78,14 @@ public class Main {
 	}
 
 	private static void elaboraSingoloMessaggio(Part msg, String idMessage) {
-		
+		String pathSingoloMesssaggio = pathBase+File.separator+idMessage;
 		try {
 
 			if (msg.isMimeType("text/plain")) {
 
 				System.out.println("This is plain text: " + msg.getFileName() + " " + msg.getDisposition());
 				System.out.println("---------------------------");
-				File fileSave = new File(pathBase+File.separator+idMessage,idMessage+"_testo.txt");		
+				File fileSave = new File(pathSingoloMesssaggio,idMessage+"_testo.txt");		
 				FileUtils.scriviFile(fileSave, msg.getInputStream());
 				
 			}
@@ -130,7 +130,7 @@ public class Main {
 					System.out.println("_+This is a string: " + msg.getFileName() + " " + msg.getDisposition());
 					System.out.println("---------------------------" + msg.getContentType());
 					if(msg.getFileName()==null && msg.getContentType().contains("html".toLowerCase())){
-						File fileSave = new File(pathBase+File.separator+idMessage,idMessage+"_"+".html");		
+						File fileSave = new File(pathSingoloMesssaggio,idMessage+"_"+".html");		
 						FileUtils.scriviFile(fileSave, msg.getInputStream());	
 					}
 					
@@ -144,15 +144,16 @@ public class Main {
 					if(msg.getFileName().toLowerCase().endsWith(".p7m")){
 						
 				
-						File fileP7m = new File(pathBase+File.separator+idMessage,idMessage+"_"+msg.getFileName());		
+						File fileP7m = new File(pathSingoloMesssaggio,idMessage+"_"+msg.getFileName());		
 						FileUtils.scriviFile(fileP7m, msg.getInputStream());
 						//String bite = java.util.Base64.getMimeEncoder().encodeToString(IOUtils.toByteArray(iss));
 						
 						ExstractorP7M extrac = new ExstractorP7M();
-						System.out.println(extrac.verify(pathBase+File.separator+idMessage+File.separator));
+						System.out.println(extrac.verifyEstrai(pathSingoloMesssaggio+File.separator));
+						
 
 					}else{
-						File fileSave = new File(pathBase+File.separator+idMessage,idMessage+"_"+msg.getFileName());		
+						File fileSave = new File(pathSingoloMesssaggio,msg.getFileName());		
 						FileUtils.scriviFile(fileSave, msg.getInputStream());	
 					}
 				

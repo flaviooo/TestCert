@@ -36,7 +36,7 @@ public class ExstractorP7M {
 		}
 	}
 
-	public  boolean verify(String pathFilesSigned) {
+	public  boolean verifyEstrai(String pathFilesSigned) {
 
 		boolean esito = false;
 		File[] filesP7M = new File(pathFilesSigned).listFiles((new FileExtensionFilter("p7m")));
