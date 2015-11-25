@@ -152,10 +152,11 @@ public class Main {
 						//String bite = java.util.Base64.getMimeEncoder().encodeToString(IOUtils.toByteArray(iss));
 						
 						
-						System.out.println(extrac.verifyEstrai(fileP7m));
-						String fileNameHTMLMExport = (fileP7m.getName().substring(0, fileP7m.getName().length() - 4).trim())+".html";
+						System.out.println(extrac.verifyEstrai(pathSingoloMesssaggio,fileP7m));
 						
-						convetHtml.convertXML2FO(fileP7m, new File(fileNameHTMLMExport));
+						String fileNameHTMLMExport = fileP7m.getName().substring(0, fileP7m.getName().length() - 4).trim();
+						
+						convetHtml.convertXML2FO(pathSingoloMesssaggio+File.separator+fileNameHTMLMExport);
 						
 
 					}else{

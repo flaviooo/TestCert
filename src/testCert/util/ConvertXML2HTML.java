@@ -26,18 +26,18 @@ public class ConvertXML2HTML {
      * @throws IOException In case of an I/O problem
      * @throws TransformerException In case of a XSL transformation problem
      */
-	   public void convertXML2FO(File xml, File fo)
+	   public void convertXML2FO(String fileNameHTMLMExport)
                throws IOException, TransformerException {
 			File xsltfile = new File("C:\\Users\\f.tuosto\\Desktop\\SDI\\SDIMAILV4\\xsl", "fatturapa_v1.1.xsl");
        //Setup output
-       OutputStream out = new java.io.FileOutputStream(fo);
+       OutputStream out = new java.io.FileOutputStream(new File(fileNameHTMLMExport+".html"));
        try {
            //Setup XSLT
            TransformerFactory factory = TransformerFactory.newInstance();
            Transformer transformer = factory.newTransformer(new StreamSource(xsltfile));
 
            //Setup input for XSLT transformation
-           Source src = new StreamSource(xml);
+           Source src = new StreamSource(new File(fileNameHTMLMExport));
 
            //Resulting SAX events (the generated FO) must be piped through to FOP
            Result res = new StreamResult(out);

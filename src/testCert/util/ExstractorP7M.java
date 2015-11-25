@@ -36,7 +36,7 @@ public class ExstractorP7M {
 		}
 	}
 
-	public  boolean verifyEstrai(File pathFilesSignedd) {
+	public  boolean verifyEstrai(String pathBase, File pathFilesSignedd) {
 
 		boolean esito = false;
 
@@ -60,11 +60,12 @@ public class ExstractorP7M {
 
 					// Verifie la signature
 					//System.out.println(signer.verify(certificate, "BC"));
-					System.out.println(	signer.verify(certificate.getPublicKey(), "BC"));
+					esito = signer.verify(certificate.getPublicKey(), "BC");
+					System.out.println("Verifica FILE: "+esito);
 					
-					System.out.println(data);
-					System.out.println(pathFilesSignedd.getName().substring(0, pathFilesSignedd.getName().length() - 4).trim());
-					FileOutputStream envfos = new FileOutputStream(pathFilesSignedd.getName().substring(0, pathFilesSignedd.getName().length() - 4).trim());
+					String fatturapaName =  pathFilesSignedd.getName().substring(0, pathFilesSignedd.getName().length() - 4).trim();
+					System.out.println(" test:"+fatturapaName);
+					FileOutputStream envfos = new FileOutputStream(new File(pathBase,fatturapaName));
 					envfos.write(data);
 					envfos.close();
 				} catch (Exception e) {
