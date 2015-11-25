@@ -1,4 +1,6 @@
 /TARGET/
-
+/.settings/
 /target/
 /.gitignore
+.classpath
+.gitignore
