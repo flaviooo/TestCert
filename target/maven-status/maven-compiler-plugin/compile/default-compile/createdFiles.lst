@@ -1,0 +1,9 @@
+testCert\util\FileUtils.class
+testCert\connPEC\ConnMailCCSEManager.class
+testCert\util\ExstractorP7M.class
+testCert\connPEC\ConnPECMailCCSEManager.class
+testCert\Main.class
+testCert\util\ConvertXML2HTML.class
+testCert\InformationMessage.class
+testCert\util\FileExtensionFilter.class
+testCert\authenticator\MailAuthenticator.class
