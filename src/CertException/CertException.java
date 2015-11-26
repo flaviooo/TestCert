@@ -1,4 +1,4 @@
-package testCert.ExceptionCert;
+package CertException;
 
 public class CertException extends Exception {
 	
