@@ -9,17 +9,21 @@ import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.Store;
 
-import testCert.InformationMessage;
 import testCert.Main;
 import testCert.connPEC.ConnMailCCSEManager;
+import testCert.dto.InformationMessage;
 import testCert.util.ConvertXML2HTML;
 import testCert.util.ExstractorP7M;
 import testCert.util.FileUtils;
 
 
-public class WorkerPEC {
+public class WorkerPEC implements IWorkerPEC{
+	
+	private static ConnMailCCSEManager cm = ConnMailCCSEManager.getConnManager(ConnMailCCSEManager.MAIL_PEC);
+	
 	final static private String pathBase = "C:\\Users\\f.tuosto\\Desktop\\SDI";
-	public void ExtractorMailPec(ConnMailCCSEManager cm) {
+	
+	public void ExtractorMailPec() {
 		Store store = cm.apriConnessione();
 		try {
 			store.connect();
@@ -41,7 +45,9 @@ public class WorkerPEC {
 			System.out.println("Connesso?: " + store.isConnected());
 		}
 	}
-	private void elaboraMessaggi(Message[] msg) throws Exception{
+	
+	@Override
+	public void elaboraMessaggi(Message[] msg){
 		
 		for (int i = 0; i < msg.length; i++) {
 			InformationMessage ifm = new InformationMessage((Message) msg[i]);
@@ -153,9 +159,9 @@ public class WorkerPEC {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+	
 }
