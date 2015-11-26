@@ -15,23 +15,18 @@ import org.bouncycastle.mail.smime.SMIMESignedParser;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import testCert.connPEC.ConnMailCCSEManager;
 import testCert.service.WorkerPEC;
 
 
 public class Main {
 
-
-
 	public static void main(String[] args) {
 
-		ConnMailCCSEManager cm = ConnMailCCSEManager.getConnManager(ConnMailCCSEManager.MAIL_PEC);
+		
 		WorkerPEC wp = new WorkerPEC();
-		wp.ExtractorMailPec(cm);
+		wp.ExtractorMailPec();
 
 	}
-
-	
 	
 	private static Document extractXMLCert(final SMIMESignedParser s) throws Exception {
 		final MimeBodyPart mimePart = s.getContent();
