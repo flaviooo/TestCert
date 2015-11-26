@@ -5,12 +5,13 @@ import java.io.InputStream;
 
 import javax.mail.Folder;
 import javax.mail.Message;
+import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.Store;
 
 import testCert.connPEC.ConnMailCCSEManager;
-import testCert.dto.InformationMessage;
+import testCert.dto.MessageWrap;
 import testCert.util.ConvertXML2HTML;
 import testCert.util.ExstractorP7M;
 import testCert.util.FileUtils;
@@ -19,8 +20,6 @@ import testCert.util.FileUtils;
 public class PECWorker implements IWorkerPEC{
 	
 	private static ConnMailCCSEManager cm = ConnMailCCSEManager.getConnManager(ConnMailCCSEManager.MAIL_PEC);
-	
-	
 	
 	public void ExtractorMailPec() {
 		Store store = cm.apriConnessione();
@@ -49,11 +48,10 @@ public class PECWorker implements IWorkerPEC{
 	public void elaboraMessaggi(Message[] msg){
 		
 		for (int i = 0; i < msg.length; i++) {
-			InformationMessage ifm = new InformationMessage((Message) msg[i]);
+			MessageWrap ifm = new MessageWrap((Message) msg[i]);
 			
 			if (ifm.getIdMessage() != null) {
 				String idMessage = ifm.getIdMessage();
-				
 				//creo la cartella che conterrà i singoli file presenti in un msg
 				 File f =new File (pathBase+File.separator+idMessage);
 				 if(!f.exists()) f.mkdirs();
