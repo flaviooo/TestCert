@@ -9,7 +9,6 @@ import javax.mail.Multipart;
 import javax.mail.Part;
 import javax.mail.Store;
 
-import testCert.Main;
 import testCert.connPEC.ConnMailCCSEManager;
 import testCert.dto.InformationMessage;
 import testCert.util.ConvertXML2HTML;
@@ -17,11 +16,11 @@ import testCert.util.ExstractorP7M;
 import testCert.util.FileUtils;
 
 
-public class WorkerPEC implements IWorkerPEC{
+public class PECWorker implements IWorkerPEC{
 	
 	private static ConnMailCCSEManager cm = ConnMailCCSEManager.getConnManager(ConnMailCCSEManager.MAIL_PEC);
 	
-	final static private String pathBase = "C:\\Users\\f.tuosto\\Desktop\\SDI";
+	
 	
 	public void ExtractorMailPec() {
 		Store store = cm.apriConnessione();

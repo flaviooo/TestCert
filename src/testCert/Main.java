@@ -15,7 +15,7 @@ import org.bouncycastle.mail.smime.SMIMESignedParser;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import testCert.service.WorkerPEC;
+import testCert.service.PECWorker;
 
 
 public class Main {
@@ -23,7 +23,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		
-		WorkerPEC wp = new WorkerPEC();
+		PECWorker wp = new PECWorker();
 		wp.ExtractorMailPec();
 
 	}
